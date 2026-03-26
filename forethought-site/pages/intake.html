@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Intake | Forethought Care &amp; Support</title>
+
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script src="../js/main.js" defer></script>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <div class="site-header__inner">
+
+    <!-- BRAND ROW -->
+    <div class="container header-inner">
+      <a class="brand" href="../index.html">
+        <img
+          class="brand-mark"
+          src="../assets/prometheus-mark.png"
+          alt="Forethought Care &amp; Support logo"
+        />
+      </a>
+
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        data-menu-toggle
+      >
+        Menu
+      </button>
+    </div>
+
+    <!-- NAV ROW -->
+    <div class="container nav-row">
+      <nav class="site-nav" aria-label="Primary navigation" data-site-nav>
+        <a href="../index.html">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../team.html">Team</a>
+
+        <a href="about.html">About</a>
+        <a href="testimonials.html">Testimonials</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+
+        <a href="eLearning.html">eLearning</a>
+        <a href="crm-portal.html">CRM Portal</a>
+      </nav>
+    </div>
+
+  </div>
+</header>
+
+<main id="main">
+  <section class="form-section">
+    <div class="container">
+      <div class="form-wrapper">
+        <h1>Participant Intake &amp; Goal Setting</h1>
+
+        <form
+  class="contact-form"
+  name="intake"
+  method="POST"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  action="/success.html"
+>
+  <!-- Required for Netlify -->
+  <input type="hidden" name="form-name" value="intake">
+
+  <!-- Honeypot (spam protection) -->
+  <p class="visually-hidden">
+    <label>
+      Don’t fill this out if you’re human:
+      <input name="bot-field">
+    </label>
+  </p>
+          <!-- Participant details -->
+          <fieldset>
+            <legend>Participant details</legend>
+
+            <div class="form-group">
+              <label for="full-name">Full name</label>
+              <input id="full-name" type="text" name="full_name" required>
+            </div>
+
+            <div class="form-group">
+              <label for="preferred-name">Preferred name</label>
+              <input id="preferred-name" type="text" name="preferred_name">
+            </div>
+
+            <div class="form-group">
+              <label for="dob">Date of birth</label>
+              <input id="dob" type="date" name="dob">
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Contact phone</label>
+              <input id="phone" type="tel" name="phone">
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input id="email" type="email" name="email">
+            </div>
+
+            <div class="form-group">
+              <label for="location">Residential suburb and postcode</label>
+              <input id="location" type="text" name="location">
+            </div>
+
+            <div class="form-group">
+              <label for="ndis">NDIS participant?</label>
+              <select id="ndis" name="ndis_participant">
+                <option value="">Select</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="plan">Plan managed by</label>
+              <select id="plan" name="plan_management">
+                <option value="">Select</option>
+                <option>Self-managed</option>
+                <option>Plan-managed</option>
+                <option>NDIA-managed</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="coordinator">Support coordinator details</label>
+              <textarea id="coordinator" name="support_coordinator"></textarea>
+            </div>
+          </fieldset>
+
+          <!-- Immediate needs -->
+          <fieldset>
+            <legend>Immediate needs and urgency</legend>
+
+            <div class="form-group">
+              <label for="referral">How did you hear about Forethought?</label>
+              <input id="referral" type="text" name="referral_source">
+            </div>
+
+            <div class="form-group">
+              <label for="reason">Reason for contact</label>
+              <textarea id="reason" name="reason_for_contact" required></textarea>
+            </div>
+
+            
+
+      
+          </fieldset>
+
+          <!-- Consent -->
+          <fieldset>
+            <legend>Consent and next steps</legend>
+
+            <div class="form-group">
+              <label>
+                <input type="checkbox" name="consent" required>
+                I consent to being contacted and to the information being stored for intake and service planning.
+              </label>
+            </div>
+
+            <div class="form-group">
+              <label for="next-step">Preferred next step</label>
+              <select id="next-step" name="next_step">
+                <option>Phone consult</option>
+                <option>Email with next steps</option>
+                <option>Book initial goals session</option>
+              </select>
+            </div>
+          </fieldset>
+
+          <button type="submit" class="btn btn-primary">Send intake</button>
+                 </form>
+      </div>
+    </div>
+  </section>
+</main>

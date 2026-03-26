@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forethought Care &amp; Support</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="js/main.js" defer></script>
+  </head>
+
+  <body class="has-sidebar">
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <div class="site-header__inner">
+
+    <!-- BRAND ROW -->
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <img
+          class="brand-mark"
+          src="assets/prometheus-mark.png"
+          alt="Forethought Care &amp; Support logo"
+        />
+      </a>
+
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        data-menu-toggle
+      >
+        Menu
+      </button>
+    </div>
+
+    <!-- NAV ROW -->
+    <div class="container nav-row">
+      <nav class="site-nav" aria-label="Primary navigation" data-site-nav>
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="team.html">Team</a>
+
+        <a href="pages/about.html">About</a>
+        <a href="pages/testimonials.html">Testimonials</a>
+        <a href="pages/blog.html">Blog</a>
+        <a href="pages/contact.html">Contact</a>
+
+        <a href="pages/eLearning.html">eLearning</a>
+        <a href="pages/crm-portal.html">CRM Portal</a>
+      </nav>
+    </div>
+
+  </div>
+</header>
+
+    <!-- HOME LAYOUT: Sidebar + Main (sidebar stops before footer because it is sticky inside this wrapper) -->
+    <div class="home-layout">
+      <!-- SIDEBAR -->
+      <aside class="site-sidebar" aria-label="Get started">
+        <h2 class="sidebar-title">Get started</h2>
+
+        <div class="sidebar-actions">
+          <a class="btn btn-secondary" href="services.html">Services</a>
+          <a class="btn btn-secondary" href="pages/contact.html">Contact</a>
+
+          <a class="btn btn-primary" href="pages/contact.html">
+            Book a free consultation
+          </a>
+
+          <a class="btn btn-secondary" href="#journey">
+            Explore the Carriage Ride journey
+          </a>
+        </div>
+      </aside>
+
+      <!-- MAIN -->
+      <main id="main">
+        <!-- HERO -->
+        <section class="hero">
+          <div class="container hero-grid">
+            <div>
+              <h1>
+                Forethought Care &amp; Support — Ethical, Strengths‑Based Recovery
+                Coaching and Support
+              </h1>
+
+              <p class="hero-subhead">
+                Recovery coaching, behaviour support, case management and system
+                navigation that centre participant goals, choice and dignity.
+              </p>
+
+              <!-- ✅ HERO BUTTONS REMOVED (moved into sidebar) -->
+
+              <div class="badge-line">
+                <span class="badge">Non‑residential supports</span>
+                <span class="badge">Consent &amp; documentation</span>
+                <span class="badge">Trauma‑aware approach</span>
+              </div>
+            </div>
+
+            <aside class="hero-aside">
+              <div class="texture-card" aria-hidden="true"></div>
+              <p class="small-note" style="margin-top:0.75rem">
+                We help participants pursue goals with Recovery Coaching,
+                Behaviour Support and Case Management.
+              </p>
+            </aside>
+          </div>
+        </section>
+
+        <!-- WHAT WE DO -->
+        <section class="section section--alt">
+          <div class="container">
+            <h2>What we do</h2>
+            <p>
+              Forethought combines clinical governance, lived experience and
+              trauma‑aware practice to help NDIS participants move from uncertainty
+              to capability, with practical, measurable progress.
+            </p>
+          </div>
+        </section>
+
+        <!-- SERVICES SNAPSHOT (SLIDESHOW) -->
+        <section class="section section--alt" aria-labelledby="services-snapshot-title">
+          <div class="container">
+            <div class="services-snapshot-head">
+              <div>
+                <h2 id="services-snapshot-title">Services Snapshot</h2>
+                <p class="small-note">
+                  A quick overview of our core supports. 
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="services-carousel"
+              data-services-carousel
+              role="region"
+              aria-roledescription="carousel"
+              aria-label="Services snapshot"
+              tabindex="0"
+            >
+              <div class="services-carousel__viewport" data-carousel-viewport>
+
+                <!-- Slide 1 -->
+                <article class="services-carousel__slide is-active" data-carousel-slide>
+                  <h3>Individual Support &amp; Recovery Coaching</h3>
+                  <p>Supporting people to move toward meaningful life goals through recovery-oriented, person-centred coaching</p>
+                  <div class="services-carousel__actions">
+                    <a class="btn btn-primary" href="services.html#service-individual-support">Learn more</a>
+                    <a class="btn btn-secondary" href="pages/contact.html">Book a free consultation</a>
+                  </div>
+                </article>
+
+                <!-- Slide 2 -->
+                <article class="services-carousel__slide" data-carousel-slide>
+                  <h3>Business Support &amp; Administration</h3>
+                  <p>Practical support for small businesses and organisations needing reliable systems, documents, and workflow.</p>
+                  <div class="services-carousel__actions">
+                    <a class="btn btn-primary" href="services.html#service-business-support">Learn more</a>
+                    <a class="btn btn-secondary" href="pages/contact.html">Make a referral</a>
+                  </div>
+                </article>
+
+                <!-- Slide 3 -->
+                <article class="services-carousel__slide" data-carousel-slide>
+                  <h3>Workplace Training &amp; Assessment</h3>
+                  <p>Training and assessment that builds capability, confidence, and ethical practice at work.</p>
+                  <div class="services-carousel__actions">
+                    <a class="btn btn-primary" href="services.html#service-workplace-traning">Learn more</a>
+                    <a class="btn btn-secondary" href="pages/contact.html">Talk to us</a>
+                  </div>
+</article>
+<!-- Slide 4 -->
+                <article class="services-carousel__slide" data-carousel-slide>
+                  <h3>Research Ethics &amp; Governance Support</h3>
+                  <p>Expert guidance for researchers navigating ethics, governance, and compliance requirements.</p>
+                  <div class="services-carousel__actions">
+                    <a class="btn btn-primary" href="services.html#service-research-ethics">Learn more</a>
+                    <a class="btn btn-secondary" href="pages/contact.html">Talk to us</a>
+                  </div>
+
+                </article>
+
+              </div>
+
+              <!-- Controls -->
+              <div class="services-carousel__controls">
+                <button class="carousel-btn" type="button" data-carousel-prev aria-label="Previous service">
+                  ❮
+                </button>
+
+                <div class="services-carousel__dots" data-carousel-dots aria-label="Choose a service slide"></div>
+
+                <button class="carousel-btn" type="button" data-carousel-next aria-label="Next service">
+                  ❯
+                </button>
+
+                <button
+                  class="carousel-btn carousel-btn--toggle"
+                  type="button"
+                  data-carousel-toggle
+                  aria-pressed="false"
+                >
+                  Pause
+                </button>
+              </div>
+            </div>
+
+            <!-- Static cards -->
+            <div class="cards services-snapshot-cards">
+              <article class="card">
+                <h3>Individual Support &amp; Recovery Coaching</h3>
+                <p>For NDIS-style support, disability support, and life-goal coaching.</p>
+                <a class="card-link" href="services.html#service-individual-support">Learn more</a>
+              </article>
+
+              <article class="card">
+                <h3>Business Support &amp; Administration</h3>
+                <p>For small businesses, sole traders, and community organisations needing help with systems, documents, and workflow.</p>
+                <a class="card-link" href="services.html#service-business-support">Learn more</a>
+              </article>
+
+<article class="card">
+                <h3>Workplace Training &amp; Assessment</h3>
+                <p>For induction modules, ethics/integrity training, and professionial development.</p>
+                <a class="card-link" href="services.html#service-workplace-training">Learn more</a>
+              </article>
+              
+              <article class="card">
+                <h3>Research Ethics &amp; Governance Support</h3>
+                <p>For researchers needing help with HREC submissions, governance documents, consumer consultation, and GCP-aligned processess.</p>
+                <a class="card-link" href="services.html#service-research-ethics">Learn more</a>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- JOURNEY -->
+        <section class="section section--sand" id="journey">
+          <div class="container">
+            <h2>The Carriage Ride Journey</h2>
+
+            <a
+              href="https://www.youtube.com/watch?v=G17hHrdo5co"
+              class="btn btn-primary carriage-ride-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              The Carriage Ride
+            </a>
+
+            <p class="small-note">
+              A strengths‑based framework for mapping participant journeys.
+            </p>
+
+            <ol class="journey-steps">
+              <li><span class="step-dot"></span>Discover</li>
+              <li><span class="step-dot"></span>Plan</li>
+              <li><span class="step-dot"></span>Connect</li>
+              <li><span class="step-dot"></span>Build Skills</li>
+              <li><span class="step-dot"></span>Review</li>
+              <li><span class="step-dot"></span>Celebrate</li>
+            </ol>
+
+            <a class="btn btn-primary" href="pages/intake.html">
+              Start your carriage ride — free intake worksheet
+            </a>
+          </div>
+        </section>
+
+        <!-- TEAM SNAPSHOT (all six members) -->
+        <section class="section section--beige">
+          <div class="container">
+            <h2>Team Snapshot</h2>
+
+            <div class="cards">
+              <article class="card">
+                <img src="assets/team/jacqueline-robinson.jpg" alt="Jacqueline Robinson, Principal" />
+                <h3>Jacqueline Robinson</h3>
+                <p><strong>Principal</strong> — Registered Nurse, Ethics &amp; Governance Specialist</p>
+                <a class="card-link" href="team.html#jacqueline-robinson">View bio</a>
+              </article>
+
+              <article class="card">
+                <img src="assets/team/patrick-daigneault.jpg" alt="Patrick Daigneault, Director" />
+                <h3>Patrick Daigneault</h3>
+                <p><strong>Director</strong> — Operations and Business Systems</p>
+                <a class="card-link" href="team.html#patrick-daigneault">View bio</a>
+              </article>
+
+              <article class="card">
+                <img src="assets/team/nikki-sutherland.jpg" alt="Nikki Sutherland" />
+                <h3>Nikki Sutherland</h3>
+                <p><strong>Add</strong> — Add</p>
+                <a class="card-link" href="team.html#nikki-sutherland">View bio</a>
+              </article>
+
+              <article class="card">
+                <img src="assets/team/kayla-gagne.jpg" alt="Kayla Gagne" />
+                <h3>Kayla Gagne</h3>
+                <p><strong>Add</strong> — Add</p>
+                <a class="card-link" href="team.html#kayla-gagne">View bio</a>
+              </article>
+
+              <article class="card">
+                <img src="assets/team/leah-daigneault.jpg" alt="Leah Daigneault" />
+                <h3>Leah Daigneault</h3>
+                <p><strong>Add</strong> — Add</p>
+                <a class="card-link" href="team.html#leah-daigneault">View bio</a>
+              </article>
+
+              <article class="card">
+                <img src="assets/team/nadia-daigneault.jpg" alt="Nadia Daigneault" />
+                <h3>Nadia Daigneault</h3>
+                <p><strong>Add</strong> — Add</p>
+                <a class="card-link" href="team.html#nadia-daigneault">View bio</a>
+              </article>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div>
+          <h3>Forethought</h3>
+          <p class="small-note" style="color:#fff">
+            Ethical, strengths‑based supports for NDIS participants (non‑residential).
+          </p>
+        </div>
+
+        <div>
+          <h3>Links</h3>
+          <p><a href="services.html">Services</a></p>
+          <p><a href="pages/blog.html">Blog &amp; Advocacy</a></p>
+          <p><a href="pages/contact.html">Contact &amp; Referrals</a></p>
+        </div>
+
+        <div>
+          <h3>Legal</h3>
+          <p><a href="#">Accessibility statement</a></p>
+          <p><a href="#">Privacy &amp; consent</a></p>
+        </div>
+      </div>
+
+      <div class="container footer-bottom">
+        Registered NDIS provider • Insurance and clinical governance • QLD service area coverage
+      </div>
+    </footer>
+  </body>
+</html>
