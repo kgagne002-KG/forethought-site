@@ -61,7 +61,24 @@
       <div class="form-wrapper">
         <h1>Participant Intake &amp; Goal Setting</h1>
 
-        <form class="contact-form">
+        <form
+  class="contact-form"
+  name="intake"
+  method="POST"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  action="/success.html"
+>
+  <!-- Required for Netlify -->
+  <input type="hidden" name="form-name" value="intake">
+
+  <!-- Honeypot (spam protection) -->
+  <p class="visually-hidden">
+    <label>
+      Don’t fill this out if you’re human:
+      <input name="bot-field">
+    </label>
+  </p>
           <!-- Participant details -->
           <fieldset>
             <legend>Participant details</legend>
@@ -162,8 +179,7 @@
           </fieldset>
 
           <button type="submit" class="btn btn-primary">Send intake</button>
-          </button>
-        </form>
+                 </form>
       </div>
     </div>
   </section>
