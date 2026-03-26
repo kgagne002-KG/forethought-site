@@ -9,50 +9,44 @@
   </head>
 
   <body>
-   <a class="skip-link" href="#main">Skip to main content</a>
+    <a class="skip-link" href="#main">Skip to main content</a>
 
-<header class="site-header">
-  <div class="site-header__inner">
+    <header class="site-header">
+      <div class="site-header__inner">
+        <div class="container header-inner">
+          <a class="brand" href="../index.html">
+            <img
+              class="brand-mark"
+              src="../assets/prometheus-mark.png"
+              alt="Forethought Care &amp; Support logo"
+            />
+          </a>
 
-    <!-- BRAND ROW -->
-    <div class="container header-inner">
-      <a class="brand" href="../index.html">
-        <img
-          class="brand-mark"
-          src="../assets/prometheus-mark.png"
-          alt="Forethought Care &amp; Support logo"
-        />
-      </a>
+          <button
+            class="menu-toggle"
+            type="button"
+            aria-expanded="false"
+            data-menu-toggle
+          >
+            Menu
+          </button>
+        </div>
 
-      <button
-        class="menu-toggle"
-        type="button"
-        aria-expanded="false"
-        data-menu-toggle
-      >
-        Menu
-      </button>
-    </div>
-
-    <!-- NAV ROW -->
-    <div class="container nav-row">
-      <nav class="site-nav" aria-label="Primary navigation" data-site-nav>
-        <a href="../index.html">Home</a>
-        <a href="../services.html">Services</a>
-        <a href="../team.html">Team</a>
-
-        <a href="about.html">About</a>
-        <a href="testimonials.html">Testimonials</a>
-        <a href="blog.html">Blog</a>
-        <a href="contact.html">Contact</a>
-
-        <a href="eLearning.html">eLearning</a>
-        <a href="crm-portal.html">CRM Portal</a>
-      </nav>
-    </div>
-
-  </div>
-</header>
+        <div class="container nav-row">
+          <nav class="site-nav" aria-label="Primary navigation" data-site-nav>
+            <a href="../index.html">Home</a>
+            <a href="../services.html">Services</a>
+            <a href="../team.html">Team</a>
+            <a href="about.html">About</a>
+            <a href="testimonials.html">Testimonials</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html">Contact</a>
+            <a href="eLearning.html">eLearning</a>
+            <a href="crm-portal.html">CRM Portal</a>
+          </nav>
+        </div>
+      </div>
+    </header>
 
     <main id="main">
       <section class="hero">
@@ -62,20 +56,12 @@
             <p class="hero-subhead">
               Choose the form that fits your situation. We capture minimal information up‑front and confirm consent before ongoing intake.
             </p>
-            
             <div class="badge-line">
               <span class="badge">Consent first</span>
               <span class="badge">Minimal data capture</span>
               <span class="badge">Clear next steps</span>
             </div>
           </div>
-
-          <aside class="hero-aside">
-            <div class="texture-card" aria-hidden="true"></div>
-            <p class="small-note" style="margin-top:.75rem">
-              For sensitive documents, use secure links via the CRM Portal once issued.
-            </p>
-          </aside>
         </div>
       </section>
 
@@ -84,35 +70,46 @@
           <div>
             <h2>Choose a form</h2>
 
-            <div class="tabs" role="tablist" aria-label="Contact forms">
-              <button class="tab-btn" type="button" aria-selected="true" data-tab="participant">Participant</button>
-              <button class="tab-btn" type="button" aria-selected="false" data-tab="coordinator">Support Coordinator</button>
-              <button class="tab-btn" type="button" aria-selected="false" data-tab="family">Family &amp; Carer</button>
+            <div class="tabs" role="tablist">
+              <button class="tab-btn" aria-selected="true" data-tab="participant">Participant</button>
+              <button class="tab-btn" aria-selected="false" data-tab="coordinator">Support Coordinator</button>
+              <button class="tab-btn" aria-selected="false" data-tab="family">Family &amp; Carer</button>
             </div>
 
             <!-- PARTICIPANT -->
             <div class="tab-panel is-active" data-panel="participant">
-             /success.html
-  <input type="hidden" name="form-name" value="contact-participant">
+              <form
+                class="form"
+                name="contact-participant"
+                method="POST"
+                data-netlify="true"
+                netlify-honeypot="bot-field"
+                action="success.html"
+              >
+                <input type="hidden" name="form-name" value="contact-participant" />
 
-  <p class="visually-hidden">
-    <label>
-      Don’t fill this out if you’re human:
-      <input name="bot-field">
-    </label>
-  </p>
+                <p class="visually-hidden">
+                  <label>
+                    Don’t fill this out if you’re human:
+                    <input name="bot-field" />
+                  </label>
+                </p>
+
                 <div class="field">
                   <label for="pName">Full name</label>
                   <input id="pName" name="full_name" type="text" required />
                 </div>
+
                 <div class="field">
                   <label for="pEmail">Email</label>
                   <input id="pEmail" name="email" type="email" required />
                 </div>
+
                 <div class="field">
                   <label for="pPhone">Phone</label>
                   <input id="pPhone" name="phone" type="tel" required />
                 </div>
+
                 <div class="field">
                   <label for="pService">Service interest</label>
                   <select id="pService" name="service_interest">
@@ -123,16 +120,19 @@
                     <option value="training">Training</option>
                   </select>
                 </div>
+
                 <div class="field">
                   <label for="pGoal">Primary goal / reason for contact</label>
                   <textarea id="pGoal" name="primary_goal"></textarea>
                 </div>
+
                 <div class="field">
                   <label>
                     <input type="checkbox" name="consent" required />
                     I consent to being contacted and to the information provided being stored for intake and service planning.
                   </label>
                 </div>
+
                 <div class="form-actions">
                   <button class="btn btn-primary" type="submit">Send enquiry</button>
                   <a class="btn btn-secondary" href="crm-portal.html">Use secure portal</a>
@@ -142,31 +142,43 @@
 
             <!-- SUPPORT COORDINATOR -->
             <div class="tab-panel" data-panel="coordinator">
-             /success.html
-  <input type="hidden" name="form-name" value="contact-coordinator">
+              <form
+                class="form"
+                name="contact-coordinator"
+                method="POST"
+                data-netlify="true"
+                netlify-honeypot="bot-field"
+                action="success.html"
+              >
+                <input type="hidden" name="form-name" value="contact-coordinator" />
 
-  <p class="visually-hidden">
-    <label>
-      Don’t fill this out if you’re human:
-      <input name="bot-field">
-    </label>
-  </p>
+                <p class="visually-hidden">
+                  <label>
+                    Don’t fill this out if you’re human:
+                    <input name="bot-field" />
+                  </label>
+                </p>
+
                 <div class="field">
                   <label for="scName">Referrer name</label>
                   <input id="scName" name="referrer_name" type="text" required />
                 </div>
+
                 <div class="field">
                   <label for="scOrg">Organisation</label>
                   <input id="scOrg" name="organisation" type="text" />
                 </div>
+
                 <div class="field">
                   <label for="scEmail">Email</label>
                   <input id="scEmail" name="email" type="email" required />
                 </div>
+
                 <div class="field">
                   <label for="scParticipant">Participant name (optional)</label>
                   <input id="scParticipant" name="participant_name" type="text" />
                 </div>
+
                 <div class="field">
                   <label for="scServices">Services requested</label>
                   <select id="scServices" name="services_requested">
@@ -176,16 +188,19 @@
                     <option>Training</option>
                   </select>
                 </div>
+
                 <div class="field">
                   <label for="scSummary">Brief summary / desired outcomes</label>
                   <textarea id="scSummary" name="summary"></textarea>
                 </div>
+
                 <div class="field">
                   <label>
                     <input type="checkbox" name="consent" required />
-                    I confirm participant (or authorised representative) consent has been obtained for this referral.
+                    I confirm participant consent has been obtained.
                   </label>
                 </div>
+
                 <div class="form-actions">
                   <button class="btn btn-primary" type="submit">Request referral pack</button>
                   <a class="btn btn-secondary" href="crm-portal.html">Secure upload link</a>
@@ -195,23 +210,33 @@
 
             <!-- FAMILY / CARER -->
             <div class="tab-panel" data-panel="family">
-              /success.html
-  <input type="hidden" name="form-name" value="contact-family">
+              <form
+                class="form"
+                name="contact-family"
+                method="POST"
+                data-netlify="true"
+                netlify-honeypot="bot-field"
+                action="success.html"
+              >
+                <input type="hidden" name="form-name" value="contact-family" />
 
-  <p class="visually-hidden">
-    <label>
-      Don’t fill this out if you’re human:
-      <input name="bot-field">
-    </label>
-  </p>
+                <p class="visually-hidden">
+                  <label>
+                    Don’t fill this out if you’re human:
+                    <input name="bot-field" />
+                  </label>
+                </p>
+
                 <div class="field">
                   <label for="fName">Your name</label>
                   <input id="fName" name="enquirer_name" type="text" required />
                 </div>
+
                 <div class="field">
                   <label for="fEmail">Email</label>
                   <input id="fEmail" name="email" type="email" required />
                 </div>
+
                 <div class="field">
                   <label for="fInterest">Training interest</label>
                   <select id="fInterest" name="training_interest">
@@ -219,25 +244,27 @@
                     <option value="private">Private workshop</option>
                   </select>
                 </div>
+
                 <div class="field">
                   <label for="fMessage">What do you need help with?</label>
                   <textarea id="fMessage" name="message"></textarea>
                 </div>
+
                 <div class="field">
                   <label>
                     <input type="checkbox" name="consent" required />
                     I consent to being contacted and to information provided being stored for this enquiry.
                   </label>
                 </div>
+
                 <div class="form-actions">
                   <button class="btn btn-primary" type="submit">Send enquiry</button>
                   <a class="btn btn-secondary" href="crm-portal.html">Secure portal</a>
                 </div>
               </form>
             </div>
-          </div>
 
-          
+          </div>
         </div>
       </section>
     </main>
