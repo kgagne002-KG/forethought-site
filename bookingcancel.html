@@ -1,0 +1,857 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Booking Form (Provider + Cancellation)</title>
+    <style>
+      :root {
+        --bg: #0b1220;
+        --card: rgba(255, 255, 255, 0.06);
+        --border: rgba(255, 255, 255, 0.14);
+        --text: rgba(255, 255, 255, 0.92);
+        --muted: rgba(255, 255, 255, 0.72);
+        --brand: #2563eb;
+        --danger: #dc2626;
+        --ok: #16a34a;
+        --shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+        --radius: 16px;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          radial-gradient(
+            1200px 600px at 20% 10%,
+            rgba(37, 99, 235, 0.35),
+            transparent 60%
+          ),
+          radial-gradient(
+            900px 500px at 80% 0%,
+            rgba(22, 163, 74, 0.22),
+            transparent 55%
+          ),
+          var(--bg);
+        color: var(--text);
+        font-family:
+          system-ui,
+          -apple-system,
+          Segoe UI,
+          Roboto,
+          Arial,
+          sans-serif;
+        display: grid;
+        place-items: start center;
+        padding: 28px 14px 60px;
+      }
+      .wrap {
+        width: min(980px, 100%);
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+      header {
+        padding: 6px 4px 2px;
+      }
+      h1 {
+        margin: 0 0 6px;
+        font-size: clamp(22px, 2.8vw, 30px);
+        letter-spacing: 0.2px;
+      }
+      .sub {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.45;
+        max-width: 78ch;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+      @media (min-width: 920px) {
+        .grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 16px;
+        backdrop-filter: blur(10px);
+      }
+      .card h2 {
+        margin: 0 0 10px;
+        font-size: 18px;
+      }
+      .row {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-top: 10px;
+      }
+      @media (min-width: 560px) {
+        .row.two {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      label {
+        display: block;
+        font-weight: 650;
+        font-size: 13px;
+        margin-bottom: 6px;
+        color: rgba(255, 255, 255, 0.88);
+      }
+      input,
+      select,
+      button,
+      textarea {
+        width: 100%;
+        box-sizing: border-box;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        background: rgba(10, 14, 22, 0.6);
+        color: var(--text);
+        padding: 10px 12px;
+        font-size: 14px;
+        outline: none;
+      }
+      input::placeholder {
+        color: rgba(255, 255, 255, 0.45);
+      }
+      select:disabled,
+      input:disabled {
+        opacity: 0.65;
+        cursor: not-allowed;
+      }
+      .btn {
+        margin-top: 12px;
+        border: 0;
+        background: var(--brand);
+        color: white;
+        font-weight: 700;
+        cursor: pointer;
+        transition:
+          transform 0.05s ease,
+          filter 0.15s ease;
+      }
+      .btn:hover {
+        filter: brightness(1.06);
+      }
+      .btn:active {
+        transform: translateY(1px);
+      }
+      .btn-danger {
+        background: var(--danger);
+      }
+      .meta {
+        margin-top: 10px;
+        padding: 10px 12px;
+        border-radius: 12px;
+        border: 1px dashed rgba(255, 255, 255, 0.22);
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.45;
+        word-break: break-word;
+      }
+      .status {
+        margin-top: 10px;
+        font-size: 13px;
+        line-height: 1.45;
+        color: var(--muted);
+      }
+      .status.ok {
+        color: rgba(22, 163, 74, 0.95);
+      }
+      .status.bad {
+        color: rgba(220, 38, 38, 0.95);
+      }
+
+      .small {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.62);
+        margin-top: 6px;
+      }
+      a {
+        color: rgba(147, 197, 253, 0.95);
+      }
+      .divider {
+        height: 1px;
+        background: rgba(255, 255, 255, 0.12);
+        margin: 14px 0;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.78);
+        margin: 8px 8px 0 0;
+      }
+
+      .bookings-list {
+        margin-top: 10px;
+        display: grid;
+        gap: 8px;
+      }
+      .booking-item {
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 12px;
+        padding: 10px 12px;
+        font-size: 13px;
+        line-height: 1.35;
+        color: rgba(255, 255, 255, 0.82);
+      }
+      .booking-item .muted {
+        color: rgba(255, 255, 255, 0.6);
+      }
+      .tag {
+        display: inline-block;
+        font-size: 11px;
+        padding: 2px 8px;
+        border-radius: 999px;
+        margin-left: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        background: rgba(255, 255, 255, 0.06);
+        color: rgba(255, 255, 255, 0.74);
+      }
+      .tag.cancelled {
+        border-color: rgba(220, 38, 38, 0.35);
+        background: rgba(220, 38, 38, 0.12);
+        color: rgba(255, 180, 180, 0.95);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <h1>Website Booking Form</h1>
+        <p class="sub">
+          Provider selection uses a native HTML dropdown
+          (<code>&lt;select&gt;</code>) which is the standard form control for a
+          list of options.
+          [1](https://www.powr.io/booking-form-website-app)[2](https://cornell1.my.site.com/cep/s/article/Configure-Bookings)
+          JavaScript reads the chosen option using <code>select.value</code>.
+          [3](https://www.microsoft.com/en-us/microsoft-365/business/scheduling-and-booking-app)
+        </p>
+        <div>
+          <span class="pill">✅ Provider selection</span>
+          <span class="pill">✅ Time slots</span>
+          <span class="pill">✅ Booking ID</span>
+          <span class="pill">✅ Cancellation</span>
+        </div>
+      </header>
+
+      <div class="grid">
+        <!-- BOOK -->
+        <section class="card" aria-label="Booking form">
+          <h2>Book an appointment</h2>
+
+          <form id="bookingForm" novalidate>
+            <div class="row">
+              <div>
+                <label for="service">Service</label>
+                <select id="service" name="service" required>
+                  <option value="" selected disabled>
+                    -- Choose a service --
+                  </option>
+                  <option value="consultation">Consultation</option>
+                  <option value="followup">Follow-up</option>
+                  <option value="support">Support</option>
+                </select>
+                <div class="small">Tip: Add/remove services freely.</div>
+              </div>
+            </div>
+
+            <div class="row two">
+              <div>
+                <label for="provider">Select a provider</label>
+                <!-- name attribute ensures the value is included in form data on submit. [1](https://www.powr.io/booking-form-website-app)[2](https://cornell1.my.site.com/cep/s/article/Configure-Bookings) -->
+                <select id="provider" name="provider" required>
+                  <option value="" selected disabled>
+                    -- Choose a provider --
+                  </option>
+                  <option value="any">Any available</option>
+                  <option value="alex">Alex (Senior)</option>
+                  <option value="jordan">Jordan (Support)</option>
+                  <option value="taylor">Taylor (Manager)</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="date">Date</label>
+                <input id="date" name="date" type="date" required />
+                <div class="small">Times populate after provider + date.</div>
+              </div>
+            </div>
+
+            <div class="row two">
+              <div>
+                <label for="time">Time</label>
+                <select id="time" name="time" required disabled>
+                  <option value="" selected>
+                    Choose provider & date first
+                  </option>
+                </select>
+              </div>
+              <div>
+                <label for="duration">Duration</label>
+                <select id="duration" name="duration" required>
+                  <option value="30" selected>30 minutes</option>
+                  <option value="60">60 minutes</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="row two">
+              <div>
+                <label for="name">Your name</label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  autocomplete="name"
+                  placeholder="Jane Doe"
+                  required
+                />
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  placeholder="jane@example.com"
+                  required
+                />
+              </div>
+            </div>
+
+            <button class="btn" type="submit">Confirm booking</button>
+            <p
+              id="bookStatus"
+              class="status"
+              role="status"
+              aria-live="polite"
+            ></p>
+
+            <div id="bookMeta" class="meta" hidden></div>
+          </form>
+        </section>
+
+        <!-- CANCEL -->
+        <section class="card" aria-label="Cancellation form" id="cancel">
+          <h2>Cancel a booking</h2>
+
+          <form id="cancelForm" novalidate>
+            <div class="row">
+              <div>
+                <label for="cancelBookingId">Booking ID</label>
+                <input
+                  id="cancelBookingId"
+                  name="bookingId"
+                  type="text"
+                  placeholder="BK-XXXXXXXX"
+                  required
+                />
+              </div>
+              <div>
+                <label for="cancelEmail">Email used for booking</label>
+                <input
+                  id="cancelEmail"
+                  name="email"
+                  type="email"
+                  placeholder="jane@example.com"
+                  required
+                />
+              </div>
+            </div>
+
+            <button class="btn btn-danger" type="submit">Cancel booking</button>
+            <p
+              id="cancelStatus"
+              class="status"
+              role="status"
+              aria-live="polite"
+            ></p>
+
+            <div class="meta">
+              If you include the Booking ID in confirmations, users can cancel
+              quickly. (This demo stores bookings locally in your browser for
+              simplicity.)
+            </div>
+          </form>
+
+          <div class="divider"></div>
+
+          <h2 style="margin-top: 0">Recent bookings (demo)</h2>
+          <p class="small">
+            Shows what’s currently in local storage on this device.
+          </p>
+          <div id="bookingsList" class="bookings-list"></div>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      /***********************
+       * CONFIG (edit me)
+       ***********************/
+      // Provider schedules: work hours + optional built-in blocked times (demo).
+      const schedules = {
+        alex: {
+          label: "Alex (Senior)",
+          start: "09:00",
+          end: "17:00",
+          blocked: ["10:00", "13:30"],
+        },
+        jordan: {
+          label: "Jordan (Support)",
+          start: "10:00",
+          end: "16:00",
+          blocked: ["11:00", "14:00"],
+        },
+        taylor: {
+          label: "Taylor (Manager)",
+          start: "08:30",
+          end: "12:30",
+          blocked: ["09:30"],
+        },
+      };
+
+      // Appointment start times step (minutes)
+      const SLOT_MINUTES = 30;
+
+      /***********************
+       * ELEMENTS
+       ***********************/
+      const providerEl = document.getElementById("provider");
+      const dateEl = document.getElementById("date");
+      const timeEl = document.getElementById("time");
+      const durationEl = document.getElementById("duration");
+      const bookingForm = document.getElementById("bookingForm");
+      const cancelForm = document.getElementById("cancelForm");
+
+      const bookStatus = document.getElementById("bookStatus");
+      const cancelStatus = document.getElementById("cancelStatus");
+      const bookMeta = document.getElementById("bookMeta");
+      const bookingsList = document.getElementById("bookingsList");
+
+      /***********************
+       * STORAGE HELPERS
+       ***********************/
+      function loadBookings() {
+        try {
+          return JSON.parse(localStorage.getItem("bookings") || "[]");
+        } catch {
+          return [];
+        }
+      }
+      function saveBookings(items) {
+        localStorage.setItem("bookings", JSON.stringify(items));
+      }
+
+      // Reservation map: { "provider|YYYY-MM-DD": ["09:00","09:30", ...] }
+      function loadReservations() {
+        try {
+          return JSON.parse(localStorage.getItem("reservations") || "{}");
+        } catch {
+          return {};
+        }
+      }
+      function saveReservations(map) {
+        localStorage.setItem("reservations", JSON.stringify(map));
+      }
+
+      function keyFor(providerId, date) {
+        return `${providerId}|${date}`;
+      }
+
+      /***********************
+       * TIME HELPERS
+       ***********************/
+      function toMinutes(hhmm) {
+        const [h, m] = hhmm.split(":").map(Number);
+        return h * 60 + m;
+      }
+      function toHHMM(mins) {
+        const h = String(Math.floor(mins / 60)).padStart(2, "0");
+        const m = String(mins % 60).padStart(2, "0");
+        return `${h}:${m}`;
+      }
+
+      function setTimeOptions(options) {
+        timeEl.innerHTML = "";
+        if (!options.length) {
+          timeEl.disabled = true;
+          const opt = document.createElement("option");
+          opt.value = "";
+          opt.textContent = "No times available";
+          timeEl.appendChild(opt);
+          return;
+        }
+        timeEl.disabled = false;
+
+        const placeholder = document.createElement("option");
+        placeholder.value = "";
+        placeholder.textContent = "-- Choose a time --";
+        placeholder.selected = true;
+        placeholder.disabled = true;
+        timeEl.appendChild(placeholder);
+
+        options.forEach((t) => {
+          const opt = document.createElement("option");
+          opt.value = t;
+          opt.textContent = t;
+          timeEl.appendChild(opt);
+        });
+      }
+
+      function getReservedTimes(providerId, date) {
+        const reservations = loadReservations();
+        const k = keyFor(providerId, date);
+        return new Set(reservations[k] || []);
+      }
+
+      function getAvailableSlotsForProvider(providerId, date) {
+        const sched = schedules[providerId];
+        if (!sched) return [];
+
+        const start = toMinutes(sched.start);
+        const end = toMinutes(sched.end);
+
+        const reserved = getReservedTimes(providerId, date);
+        const blocked = new Set(sched.blocked || []);
+
+        const slots = [];
+        for (let t = start; t + SLOT_MINUTES <= end; t += SLOT_MINUTES) {
+          const hhmm = toHHMM(t);
+          if (blocked.has(hhmm)) continue;
+          if (reserved.has(hhmm)) continue;
+          slots.push(hhmm);
+        }
+        return slots;
+      }
+
+      function getSlotsAnyProvider(date) {
+        // times that are available for at least one provider
+        const all = new Set();
+        Object.keys(schedules).forEach((pid) => {
+          getAvailableSlotsForProvider(pid, date).forEach((t) => all.add(t));
+        });
+        return Array.from(all).sort();
+      }
+
+      function pickProviderForAny(date, time) {
+        // choose the first provider with that slot available
+        for (const pid of Object.keys(schedules)) {
+          const slots = getAvailableSlotsForProvider(pid, date);
+          if (slots.includes(time)) return pid;
+        }
+        return null;
+      }
+
+      /***********************
+       * BOOKING ID
+       ***********************/
+      function generateBookingId() {
+        // Short, URL-safe booking id
+        return (
+          "BK-" +
+          Math.random().toString(36).slice(2, 6).toUpperCase() +
+          "-" +
+          Date.now().toString(36).slice(-5).toUpperCase()
+        );
+      }
+
+      /***********************
+       * UI REFRESH
+       ***********************/
+      function refreshTimes() {
+        const provider = providerEl.value; // select.value provides the selected option value. [3](https://www.microsoft.com/en-us/microsoft-365/business/scheduling-and-booking-app)
+        const date = dateEl.value;
+
+        if (!provider || !date) {
+          timeEl.disabled = true;
+          timeEl.innerHTML = `<option value="">Choose provider & date first</option>`;
+          return;
+        }
+
+        const slots =
+          provider === "any"
+            ? getSlotsAnyProvider(date)
+            : getAvailableSlotsForProvider(provider, date);
+
+        setTimeOptions(slots);
+      }
+
+      function renderBookingsList() {
+        const items = loadBookings().slice().reverse();
+        if (!items.length) {
+          bookingsList.innerHTML = `<div class="booking-item"><span class="muted">No bookings yet on this device.</span></div>`;
+          return;
+        }
+        bookingsList.innerHTML = items
+          .slice(0, 8)
+          .map((b) => {
+            const tag =
+              b.status === "cancelled"
+                ? `<span class="tag cancelled">cancelled</span>`
+                : `<span class="tag">active</span>`;
+            return `
+          <div class="booking-item">
+            <div><strong>${escapeHtml(b.service)}</strong>${tag}</div>
+            <div class="muted">${escapeHtml(b.date)} @ ${escapeHtml(b.time)} — ${escapeHtml(b.providerLabel)}</div>
+            <div class="muted">Booking ID: <code>${escapeHtml(b.bookingId)}</code></div>
+            <div class="muted">${escapeHtml(b.name)} • ${escapeHtml(b.email)}</div>
+          </div>
+        `;
+          })
+          .join("");
+      }
+
+      function escapeHtml(str) {
+        return String(str).replace(
+          /[&<>"']/g,
+          (m) =>
+            ({
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",
+              "'": "&#39;",
+            })[m],
+        );
+      }
+
+      /***********************
+       * RESERVATION APPLY/RELEASE
+       ***********************/
+      function reserveSlot(providerId, date, time) {
+        const reservations = loadReservations();
+        const k = keyFor(providerId, date);
+        const arr = reservations[k] || [];
+        if (arr.includes(time)) return false; // already reserved
+        arr.push(time);
+        reservations[k] = arr;
+        saveReservations(reservations);
+        return true;
+      }
+
+      function releaseSlot(providerId, date, time) {
+        const reservations = loadReservations();
+        const k = keyFor(providerId, date);
+        const arr = reservations[k] || [];
+        reservations[k] = arr.filter((t) => t !== time);
+        saveReservations(reservations);
+      }
+
+      /***********************
+       * FORM VALIDATION (simple)
+       ***********************/
+      function requireValue(el) {
+        return el && String(el.value || "").trim().length > 0;
+      }
+
+      /***********************
+       * EVENT HANDLERS
+       ***********************/
+      providerEl.addEventListener("change", refreshTimes);
+      dateEl.addEventListener("change", refreshTimes);
+
+      bookingForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        bookStatus.className = "status";
+        bookStatus.textContent = "";
+        bookMeta.hidden = true;
+
+        // Basic required checks
+        const providerPick = providerEl.value;
+        const date = dateEl.value;
+        const time = timeEl.value;
+
+        if (
+          !requireValue(document.getElementById("service")) ||
+          !requireValue(providerEl) ||
+          !requireValue(dateEl) ||
+          !requireValue(timeEl) ||
+          !requireValue(document.getElementById("name")) ||
+          !requireValue(document.getElementById("email"))
+        ) {
+          bookStatus.className = "status bad";
+          bookStatus.textContent = "Please fill in all required fields.";
+          return;
+        }
+
+        // If provider = any, assign a real provider that has that time available
+        let finalProvider = providerPick;
+        if (providerPick === "any") {
+          finalProvider = pickProviderForAny(date, time);
+          if (!finalProvider) {
+            bookStatus.className = "status bad";
+            bookStatus.textContent =
+              "That time is no longer available. Please pick a different time.";
+            refreshTimes();
+            return;
+          }
+        }
+
+        // Reserve slot (prevents double-booking on this device)
+        const ok = reserveSlot(finalProvider, date, time);
+        if (!ok) {
+          bookStatus.className = "status bad";
+          bookStatus.textContent =
+            "That time was just booked. Please choose another time.";
+          refreshTimes();
+          return;
+        }
+
+        const data = new FormData(bookingForm);
+        const payload = Object.fromEntries(data.entries());
+
+        const bookingId = generateBookingId();
+        const providerLabel = schedules[finalProvider]?.label || finalProvider;
+
+        const booking = {
+          bookingId,
+          status: "active",
+          service: payload.service,
+          provider: finalProvider,
+          providerLabel,
+          date: payload.date,
+          time: payload.time,
+          duration: payload.duration,
+          name: payload.name,
+          email: payload.email,
+          createdAt: new Date().toISOString(),
+        };
+
+        // Save booking
+        const bookings = loadBookings();
+        bookings.push(booking);
+        saveBookings(bookings);
+
+        // Show confirmation + cancellation link (prefill cancel form)
+        const url = new URL(window.location.href);
+        url.searchParams.set("cancel", "1");
+        url.searchParams.set("bookingId", bookingId);
+        url.searchParams.set("email", booking.email);
+        url.hash = "cancel";
+
+        bookStatus.className = "status ok";
+        bookStatus.textContent = "Booking confirmed.";
+
+        bookMeta.hidden = false;
+        bookMeta.innerHTML = `
+        <strong>Booking ID:</strong> <code>${escapeHtml(bookingId)}</code><br/>
+        <strong>Provider:</strong> ${escapeHtml(providerLabel)}<br/>
+        <strong>Date/Time:</strong> ${escapeHtml(booking.date)} @ ${escapeHtml(booking.time)}<br/>
+        <strong>Cancel link:</strong> <a href="${escapeHtml(url.toString())}">${escapeHtml(url.toString())}</a>
+        <div class="small" style="margin-top:8px;">
+          Keep your Booking ID. You can cancel using the form on the right.
+        </div>
+      `;
+
+        bookingForm.reset();
+        timeEl.disabled = true;
+        timeEl.innerHTML = `<option value="">Choose provider & date first</option>`;
+
+        renderBookingsList();
+      });
+
+      cancelForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        cancelStatus.className = "status";
+        cancelStatus.textContent = "";
+
+        const bookingId = document
+          .getElementById("cancelBookingId")
+          .value.trim();
+        const email = document
+          .getElementById("cancelEmail")
+          .value.trim()
+          .toLowerCase();
+
+        if (!bookingId || !email) {
+          cancelStatus.className = "status bad";
+          cancelStatus.textContent = "Please enter Booking ID and email.";
+          return;
+        }
+
+        const bookings = loadBookings();
+        const idx = bookings.findIndex(
+          (b) =>
+            b.bookingId === bookingId &&
+            String(b.email || "").toLowerCase() === email,
+        );
+
+        if (idx === -1) {
+          cancelStatus.className = "status bad";
+          cancelStatus.textContent =
+            "Booking not found on this device (or email does not match).";
+          return;
+        }
+
+        if (bookings[idx].status === "cancelled") {
+          cancelStatus.className = "status ok";
+          cancelStatus.textContent = "That booking is already cancelled.";
+          return;
+        }
+
+        // Mark cancelled and release the reserved slot
+        bookings[idx].status = "cancelled";
+        saveBookings(bookings);
+
+        releaseSlot(
+          bookings[idx].provider,
+          bookings[idx].date,
+          bookings[idx].time,
+        );
+
+        cancelStatus.className = "status ok";
+        cancelStatus.textContent = `Cancelled ${bookingId}. The time slot is now available again.`;
+
+        // Refresh time list if user is viewing same provider/date
+        refreshTimes();
+        renderBookingsList();
+        cancelForm.reset();
+      });
+
+      /***********************
+       * PREFILL CANCEL FORM FROM URL
+       ***********************/
+      (function prefillCancelFromUrl() {
+        const params = new URLSearchParams(window.location.search);
+        const shouldCancel = params.get("cancel") === "1";
+        const bookingId = params.get("bookingId");
+        const email = params.get("email");
+
+        if (bookingId)
+          document.getElementById("cancelBookingId").value = bookingId;
+        if (email) document.getElementById("cancelEmail").value = email;
+
+        if (shouldCancel) {
+          // If link sent, guide user to cancellation form
+          const el = document.getElementById("cancel");
+          if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      })();
+
+      // Initial render
+      renderBookingsList();
+    </script>
+  </body>
+</html>
