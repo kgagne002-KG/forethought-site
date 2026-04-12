@@ -8,7 +8,7 @@
     <script src="../js/main.js" defer></script>
   </head>
 
-  <body>
+  <body data-business-email="forethoughtcareandsupport@gmail.com">
     <a class="skip-link" href="#main">Skip to main content</a>
 
     <header class="site-header">
@@ -54,7 +54,8 @@
           <div>
             <h1>Contact &amp; Referrals</h1>
             <p class="hero-subhead">
-              Choose the form that fits your situation. We capture minimal information up‑front and confirm consent before ongoing intake.
+              Choose the form that fits your situation. We capture minimal
+              information up‑front and confirm consent before ongoing intake.
             </p>
             <div class="badge-line">
               <span class="badge">Consent first</span>
@@ -71,9 +72,23 @@
             <h2>Choose a form</h2>
 
             <div class="tabs" role="tablist">
-              <button class="tab-btn" aria-selected="true" data-tab="participant">Participant</button>
-              <button class="tab-btn" aria-selected="false" data-tab="coordinator">Support Coordinator</button>
-              <button class="tab-btn" aria-selected="false" data-tab="family">Family &amp; Carer</button>
+              <button
+                class="tab-btn"
+                aria-selected="true"
+                data-tab="participant"
+              >
+                Participant
+              </button>
+              <button
+                class="tab-btn"
+                aria-selected="false"
+                data-tab="coordinator"
+              >
+                Support Coordinator
+              </button>
+              <button class="tab-btn" aria-selected="false" data-tab="family">
+                Family &amp; Carer
+              </button>
             </div>
 
             <!-- PARTICIPANT -->
@@ -85,9 +100,21 @@
                 data-netlify="true"
                 netlify-honeypot="bot-field"
                 action="success.html"
+                data-form
+                data-form-type="contact"
+                data-form-label="Participant enquiry"
               >
-                <input type="hidden" name="form-name" value="contact-participant" />
-
+                <input
+                  type="hidden"
+                  name="form-name"
+                  value="contact-participant"
+                />
+                <input
+                  type="hidden"
+                  name="submission_timestamp"
+                  value=""
+                  data-submission-timestamp
+                />
                 <p class="visually-hidden">
                   <label>
                     Don’t fill this out if you’re human:
@@ -115,8 +142,12 @@
                   <select id="pService" name="service_interest">
                     <option value="recovery">Recovery Coaching</option>
                     <option value="bsp">Behaviour Support Practitioner</option>
-                    <option value="case">Case Management &amp; System Navigation</option>
-                    <option value="plan">Goal Navigation &amp; Plan Review</option>
+                    <option value="case">
+                      Case Management &amp; System Navigation
+                    </option>
+                    <option value="plan">
+                      Goal Navigation &amp; Plan Review
+                    </option>
                     <option value="training">Training</option>
                   </select>
                 </div>
@@ -129,13 +160,18 @@
                 <div class="field">
                   <label>
                     <input type="checkbox" name="consent" required />
-                    I consent to being contacted and to the information provided being stored for intake and service planning.
+                    I consent to being contacted and to the information provided
+                    being stored for intake and service planning.
                   </label>
                 </div>
 
                 <div class="form-actions">
-                  <button class="btn btn-primary" type="submit">Send enquiry</button>
-                  <a class="btn btn-secondary" href="crm-portal.html">Use secure portal</a>
+                  <button class="btn btn-primary" type="submit">
+                    Send enquiry
+                  </button>
+                  <a class="btn btn-secondary" href="crm-portal.html"
+                    >Use secure portal</a
+                  >
                 </div>
               </form>
             </div>
@@ -149,9 +185,21 @@
                 data-netlify="true"
                 netlify-honeypot="bot-field"
                 action="success.html"
+                data-form
+                data-form-type="referral"
+                data-form-label="Support coordinator referral"
               >
-                <input type="hidden" name="form-name" value="contact-coordinator" />
-
+                <input
+                  type="hidden"
+                  name="form-name"
+                  value="contact-coordinator"
+                />
+                <input
+                  type="hidden"
+                  name="submission_timestamp"
+                  value=""
+                  data-submission-timestamp
+                />
                 <p class="visually-hidden">
                   <label>
                     Don’t fill this out if you’re human:
@@ -161,7 +209,12 @@
 
                 <div class="field">
                   <label for="scName">Referrer name</label>
-                  <input id="scName" name="referrer_name" type="text" required />
+                  <input
+                    id="scName"
+                    name="referrer_name"
+                    type="text"
+                    required
+                  />
                 </div>
 
                 <div class="field">
@@ -176,7 +229,11 @@
 
                 <div class="field">
                   <label for="scParticipant">Participant name (optional)</label>
-                  <input id="scParticipant" name="participant_name" type="text" />
+                  <input
+                    id="scParticipant"
+                    name="participant_name"
+                    type="text"
+                  />
                 </div>
 
                 <div class="field">
@@ -190,7 +247,9 @@
                 </div>
 
                 <div class="field">
-                  <label for="scSummary">Brief summary / desired outcomes</label>
+                  <label for="scSummary"
+                    >Brief summary / desired outcomes</label
+                  >
                   <textarea id="scSummary" name="summary"></textarea>
                 </div>
 
@@ -202,8 +261,12 @@
                 </div>
 
                 <div class="form-actions">
-                  <button class="btn btn-primary" type="submit">Request referral pack</button>
-                  <a class="btn btn-secondary" href="crm-portal.html">Secure upload link</a>
+                  <button class="btn btn-primary" type="submit">
+                    Request referral pack
+                  </button>
+                  <a class="btn btn-secondary" href="crm-portal.html"
+                    >Secure upload link</a
+                  >
                 </div>
               </form>
             </div>
@@ -217,8 +280,17 @@
                 data-netlify="true"
                 netlify-honeypot="bot-field"
                 action="success.html"
+                data-form
+                data-form-type="family"
+                data-form-label="Family or carer enquiry"
               >
                 <input type="hidden" name="form-name" value="contact-family" />
+                <input
+                  type="hidden"
+                  name="submission_timestamp"
+                  value=""
+                  data-submission-timestamp
+                />
 
                 <p class="visually-hidden">
                   <label>
@@ -253,17 +325,21 @@
                 <div class="field">
                   <label>
                     <input type="checkbox" name="consent" required />
-                    I consent to being contacted and to information provided being stored for this enquiry.
+                    I consent to being contacted and to information provided
+                    being stored for this enquiry.
                   </label>
                 </div>
 
                 <div class="form-actions">
-                  <button class="btn btn-primary" type="submit">Send enquiry</button>
-                  <a class="btn btn-secondary" href="crm-portal.html">Secure portal</a>
+                  <button class="btn btn-primary" type="submit">
+                    Send enquiry
+                  </button>
+                  <a class="btn btn-secondary" href="crm-portal.html"
+                    >Secure portal</a
+                  >
                 </div>
               </form>
             </div>
-
           </div>
         </div>
       </section>
@@ -271,7 +347,8 @@
 
     <footer class="footer">
       <div class="container footer-bottom">
-        Accessibility • Privacy &amp; consent • Contact details • Newsletter signup
+        Accessibility • Privacy &amp; consent • Contact details • Newsletter
+        signup
       </div>
     </footer>
   </body>

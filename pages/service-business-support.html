@@ -10,7 +10,10 @@
   <script src="../js/main.js" defer></script>
 </head>
 
-<body data-service-default="Business Support & Administration">
+<body
+  data-business-email="forethoughtcareandsupport@gmail.com"
+  data-service-default="Business Support & Administration"
+>
   <a class="skip-link" href="#main">Skip to main content</a>
 
   <header class="site-header">
@@ -57,7 +60,7 @@
         <h2>What we do</h2>
         <p>Reliable admin and systems, 
         compliance-ready templates,
-          project coordination and admin support
+          project coordination and admin support.
         </p>
 
         <h2>This includes</h2>
@@ -67,10 +70,14 @@
           <li>Policy and procedure development</li>
           <li>Compliance-ready templates</li>
           <li>Poject coordination and administrative support</li>
+          <li>Web Development</li>
+          <li>Copy Editing &amp; Proofreading</li>
+          <li>Consumer Advising</li>
+          <li>Literature Review</li>
         </ul>
 
         <h2>Who it’s for</h2>
-        <p>Small businesses, sole traders, and organisations that need clear systems and dependable support.</p>
+        <p>Small businesses, sole traders, organisations, and students that need clear systems and dependable support.</p>
 
         <h2>How we work</h2>
         <p>Project-based or ongoing support, quoted to suit scope and timelines.</p>
@@ -82,38 +89,71 @@
         <h2>Enquire about this service</h2>
         <p class="muted">Send a brief enquiry and we’ll respond with next steps.</p>
 
-        <form class="service-form"
-              name="service-enquiry"
-              method="POST"
-              data-netlify="true"
-              netlify-honeypot="bot-field"
-              data-service-form
-              data-service="Business Support & Administration">
+       <form
+  class="service-form"
+  name="service-enquiry"
+  method="POST"
+  action="success.html"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  data-service-form
+  data-service="Business Support & Administration"
+>
 
-          <input type="hidden" name="form-name" value="service-enquiry" />
-          <p class="sr-only"><label>Don’t fill this out: <input name="bot-field" /></label></p>
+          <input type="hidden" name="form-name" value="service-business-support" />
 
-          <label>Full name <input type="text" name="full_name" autocomplete="name" required /></label>
-          <label>Email <input type="email" name="email" autocomplete="email" required /></label>
-          <label>Phone (optional) <input type="tel" name="phone" autocomplete="tel" /></label>
+<input
+  type="hidden"
+  name="submission_timestamp"
+  value=""
+  data-submission-timestamp
+/>
 
-          <label>
-            Service interest
-            <select name="service_interest" required>
-              <option value="">Select one…</option>
-              <option>Individual Support & Recovery Coaching</option>
-              <option>Business Support & Administration</option>
-              <option>Workplace Training & Assessment</option>
-              <option>Research Ethics & Governance Support</option>
-            </select>
-          </label>
+<p class="visually-hidden">
+  <label>
+    Don’t fill this out if you’re human:
+    <input name="bot-field" />
+  </label>
+</p>
 
-          <label>Primary goal / reason for contact <textarea name="primary_goal" rows="5" required></textarea></label>
+         <label>
+  Full name
+  <input type="text" name="name" required />
+</label>
 
-          <label class="checkbox">
-            <input type="checkbox" name="consent" value="yes" required />
-            I consent to being contacted and to the information provided being stored for enquiry and service planning.
-          </label>
+<label>
+  Email
+  <input type="email" name="email" required />
+</label>
+
+<label>
+  Phone (optional)
+  <input type="tel" name="phone" />
+</label>
+
+<label>
+  Service interest
+  <select name="service_interest" required>
+    <option value="" selected disabled>Select one…</option>
+    <option>Individual Support & Recovery Coaching</option>
+    <option>Business Support & Administration</option>
+    <option>Workplace Training & Assessment</option>
+    <option>Research Ethics & Governance Support</option>
+  </select>
+</label>
+
+<label>
+  Primary goal / reason for contact
+  <textarea name="message" rows="4" required></textarea>
+</label>
+
+<label>
+  <input type="checkbox" name="consent" required />
+  I consent to being contacted and to the information provided being stored for
+  enquiry and service planning.
+</label>
+
+         
 
           <input type="hidden" name="source_page" value="" data-source-page />
 

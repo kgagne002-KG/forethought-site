@@ -24,8 +24,12 @@
       if (!nav.contains(e.target) && !toggle.contains(e.target)) closeNav();
     });
 
-    nav.querySelectorAll("a").forEach((a) => a.addEventListener("click", closeNav));
-    document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeNav(); });
+    nav
+      .querySelectorAll("a")
+      .forEach((a) => a.addEventListener("click", closeNav));
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeNav();
+    });
   }
 
   /* =========================
@@ -45,7 +49,9 @@
       });
     };
 
-    tabButtons.forEach((btn) => btn.addEventListener("click", () => setActive(btn.dataset.tab)));
+    tabButtons.forEach((btn) =>
+      btn.addEventListener("click", () => setActive(btn.dataset.tab)),
+    );
   }
 
   /* =========================
@@ -56,16 +62,22 @@
 
   if (filterButtons.length && posts.length) {
     const apply = (filter) => {
-      filterButtons.forEach((b) => b.classList.toggle("is-active", b.dataset.filter === filter));
+      filterButtons.forEach((b) =>
+        b.classList.toggle("is-active", b.dataset.filter === filter),
+      );
 
       posts.forEach((post) => {
-        const tags = (post.getAttribute("data-post") || "").split(",").map((s) => s.trim());
+        const tags = (post.getAttribute("data-post") || "")
+          .split(",")
+          .map((s) => s.trim());
         const show = filter === "all" || tags.includes(filter);
         post.style.display = show ? "" : "none";
       });
     };
 
-    filterButtons.forEach((btn) => btn.addEventListener("click", () => apply(btn.dataset.filter)));
+    filterButtons.forEach((btn) =>
+      btn.addEventListener("click", () => apply(btn.dataset.filter)),
+    );
     apply("all");
   }
 
@@ -79,8 +91,12 @@
     if (!items.length || !prev || !next) return;
 
     let i = 0;
-    const render = () => items.forEach((el, idx) => el.classList.toggle("is-active", idx === i));
-    const go = (n) => { i = (n + items.length) % items.length; render(); };
+    const render = () =>
+      items.forEach((el, idx) => el.classList.toggle("is-active", idx === i));
+    const go = (n) => {
+      i = (n + items.length) % items.length;
+      render();
+    };
 
     prev.addEventListener("click", () => go(i - 1));
     next.addEventListener("click", () => go(i + 1));
@@ -93,14 +109,24 @@
      - Stops on hover/focus (recommended for auto-rotating)
   ========================= */
   document.querySelectorAll("[data-services-carousel]").forEach((carousel) => {
-    const slides = Array.from(carousel.querySelectorAll("[data-carousel-slide]"));
+    const slides = Array.from(
+      carousel.querySelectorAll("[data-carousel-slide]"),
+    );
     const prevBtn = carousel.querySelector("[data-carousel-prev]");
     const nextBtn = carousel.querySelector("[data-carousel-next]");
     const dotsWrap = carousel.querySelector("[data-carousel-dots]");
     const toggleBtn = carousel.querySelector("[data-carousel-toggle]");
     const viewport = carousel.querySelector("[data-carousel-viewport]");
 
-    if (!slides.length || !prevBtn || !nextBtn || !dotsWrap || !toggleBtn || !viewport) return;
+    if (
+      !slides.length ||
+      !prevBtn ||
+      !nextBtn ||
+      !dotsWrap ||
+      !toggleBtn ||
+      !viewport
+    )
+      return;
 
     let index = 0;
     let timer = null;
@@ -124,12 +150,23 @@
         s.classList.toggle("is-active", active);
         s.setAttribute("aria-hidden", active ? "false" : "true");
       });
-      dots.forEach((d, i) => d.setAttribute("aria-current", i === index ? "true" : "false"));
+      dots.forEach((d, i) =>
+        d.setAttribute("aria-current", i === index ? "true" : "false"),
+      );
     };
 
-    const stop = () => { if (timer) clearInterval(timer); timer = null; };
-    const start = () => { if (!isPaused) timer = setInterval(() => goTo(index + 1, false), INTERVAL); };
-    const restart = () => { stop(); start(); };
+    const stop = () => {
+      if (timer) clearInterval(timer);
+      timer = null;
+    };
+    const start = () => {
+      if (!isPaused)
+        timer = setInterval(() => goTo(index + 1, false), INTERVAL);
+    };
+    const restart = () => {
+      stop();
+      start();
+    };
 
     const goTo = (i, userAction) => {
       index = (i + slides.length) % slides.length;
@@ -157,25 +194,42 @@
 
     // Keyboard arrows
     carousel.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowRight") { e.preventDefault(); goTo(index + 1, true); }
-      if (e.key === "ArrowLeft")  { e.preventDefault(); goTo(index - 1, true); }
+      if (e.key === "ArrowRight") {
+        e.preventDefault();
+        goTo(index + 1, true);
+      }
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        goTo(index - 1, true);
+      }
     });
 
     // Basic swipe
     let startX = null;
-    viewport.addEventListener("touchstart", (e) => (startX = e.touches[0].clientX), { passive: true });
-    viewport.addEventListener("touchend", (e) => {
-      if (startX === null) return;
-      const diff = e.changedTouches[0].clientX - startX;
-      if (Math.abs(diff) > 40) diff < 0 ? goTo(index + 1, true) : goTo(index - 1, true);
-      startX = null;
-    }, { passive: true });
+    viewport.addEventListener(
+      "touchstart",
+      (e) => (startX = e.touches[0].clientX),
+      { passive: true },
+    );
+    viewport.addEventListener(
+      "touchend",
+      (e) => {
+        if (startX === null) return;
+        const diff = e.changedTouches[0].clientX - startX;
+        if (Math.abs(diff) > 40)
+          diff < 0 ? goTo(index + 1, true) : goTo(index - 1, true);
+        startX = null;
+      },
+      { passive: true },
+    );
 
     // Demo forms: prevent page reload (remove when wiring to CRM)
     document.querySelectorAll("[data-demo-form]").forEach((f) => {
       f.addEventListener("submit", (e) => {
         e.preventDefault();
-        alert("Demo form: replace form action with your CRM endpoint / automation.");
+        alert(
+          "Demo form: replace form action with your CRM endpoint / automation.",
+        );
       });
     });
 
@@ -206,12 +260,107 @@
     if (select && desired) {
       // Match option text
       const options = Array.from(select.options);
-      const match = options.find((o) => (o.textContent || "").trim() === desired.trim());
+      const match = options.find(
+        (o) => (o.textContent || "").trim() === desired.trim(),
+      );
       if (match) select.value = match.textContent.trim();
     }
 
     if (source) {
       source.value = window.location.pathname || "";
     }
+  });
+})();
+/* =========================
+   Review Form (Testimonials)
+   Static-site safe (mailto)
+========================= */
+(function () {
+  const form = document.querySelector("[data-review-form]");
+  if (!form) return;
+
+  const status = form.querySelector("[data-review-status]");
+  const clearBtn = form.querySelector("[data-review-clear]");
+  const output = form.querySelector(".rating__value");
+
+  function getRating() {
+    const checked = form.querySelector(".rating__input:checked");
+    return checked ? checked.value : "";
+  }
+
+  function updateOutput() {
+    if (!output) return;
+    output.textContent = getRating() || "0";
+  }
+
+  form.addEventListener("change", (e) => {
+    if (e.target.classList.contains("rating__input")) updateOutput();
+  });
+
+  updateOutput();
+
+  if (clearBtn) {
+    clearBtn.addEventListener("click", () => {
+      form.reset();
+      updateOutput();
+      if (status) status.textContent = "";
+    });
+  }
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const name = (form.elements.name?.value || "").trim();
+    const comment = (form.elements.comment?.value || "").trim();
+    const rating = getRating();
+
+    if (!rating) {
+      if (status) status.textContent = "Please select a rating.";
+      return;
+    }
+    if (!comment) {
+      if (status) status.textContent = "Please write a comment.";
+      return;
+    }
+
+    // ✅ Static-site safe delivery method: mailto
+    // Replace this email with your client’s address.
+    const to = "forethoughtcareandsupport@gmail.com";
+    const subject = encodeURIComponent("New website review submission");
+    const body = encodeURIComponent(
+      `Rating: ${rating}/5\n` +
+        (name ? `Name: ${name}\n` : "") +
+        `\nComment:\n${comment}\n`,
+    );
+
+    window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+
+    if (status)
+      status.textContent = "Opening your email app to send the review…";
+  });
+})();
+/* =========================
+   Submission timestamp (Netlify forms)
+   Populates hidden field before submit
+========================= */
+(function () {
+  // Any form that contains an input with [data-submission-timestamp]
+  const timestampInputs = document.querySelectorAll(
+    "[data-submission-timestamp]",
+  );
+  if (!timestampInputs.length) return;
+
+  timestampInputs.forEach((input) => {
+    const form = input.closest("form");
+    if (!form) return;
+
+    form.addEventListener(
+      "submit",
+      () => {
+        // ISO 8601 timestamp (best for storage + parsing)
+        input.value = new Date().toISOString();
+      },
+      { capture: true },
+    );
   });
 })();

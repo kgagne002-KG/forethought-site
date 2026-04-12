@@ -3,6 +3,11 @@ class BookingApp {
     // Elements
     this.statusBox = document.getElementById("bookingStatus");
     this.form = document.getElementById("bookingForm");
+    this.provider = document.getElementById("provider");
+    this.providerError = document.getElementById("providerError"); // optional if you add span
+    this.timestampInput = this.form?.querySelector(
+      "[data-submission-timestamp]",
+    );
 
     this.service = document.getElementById("bService");
     this.date = document.getElementById("bDate"); // now type="text" readonly
@@ -15,6 +20,38 @@ class BookingApp {
 
     this.list = document.getElementById("bookingList");
     this.clearAllBtn = document.getElementById("clearAll");
+
+    function validateBookingForm(form) {
+      const requiredFields = [
+        "#provider",
+        "#bService",
+        "#bDate",
+        "#bTime",
+        "#bName",
+        "#bEmail",
+      ];
+
+      let valid = true;
+
+      requiredFields.forEach((selector) => {
+        const field = form.querySelector(selector);
+        if (!field || !field.value.trim()) {
+          valid = false;
+          field.setAttribute("aria-invalid", "true");
+        } else {
+          field.removeAttribute("aria-invalid");
+        }
+      });
+
+      // Email validity
+      const email = form.querySelector("#bEmail");
+      if (email && !email.checkValidity()) {
+        valid = false;
+        email.setAttribute("aria-invalid", "true");
+      }
+
+      return valid;
+    }
 
     // Errors
     this.serviceError = document.getElementById("bServiceError");
@@ -279,6 +316,18 @@ class BookingApp {
   }
 
   // ---------- Validation ----------
+  validateProvider() {
+    const v = (this.provider?.value || "").trim();
+    if (!v) {
+      if (this.providerError)
+        this.providerError.textContent = "Please choose a provider.";
+      this.provider?.classList?.add("invalid");
+      return false;
+    }
+    if (this.providerError) this.providerError.textContent = "";
+    this.provider?.classList?.remove("invalid");
+    return true;
+  }
   validateService() {
     if (!this.service?.value) {
       this.setError(
@@ -374,6 +423,7 @@ class BookingApp {
     this.clearStatus();
 
     const ok =
+      this.validateProvider() &&
       this.validateService() &&
       this.validateDate() &&
       this.validateTime() &&
@@ -459,7 +509,7 @@ class BookingApp {
     this.pendingBooking = null;
   }
 
-  commitBooking() {
+  async commitBooking() {
     if (!this.pendingBooking) return;
     if (this.confirmSubmit) this.confirmSubmit.disabled = true;
 
@@ -518,12 +568,24 @@ class BookingApp {
     this.closeConfirm();
     this.setStatus(
       "success",
-      `Booked! ${booking.service} on ${booking.date} at ${booking.time}.`,
+      `Booked! ${booking.service} on ${booking.date} at ${booking.time}. Submitting…`,
     );
 
-    this.form.reset();
-    this.date.value = ""; // clear displayed date
+    try {
+      await this.submitToNetlify();
+      window.location.href = "success.html";
+      return;
+    } catch (err) {
+      this.setStatus(
+        "fail",
+        "Your booking was saved on this device, but we couldn’t submit it right now. Please try again or contact us.",
+      );
+      if (this.confirmSubmit) this.confirmSubmit.disabled = false;
+    }
 
+    // If submission fails, keep your existing UI reset behavior (optional):
+    this.form.reset();
+    this.date.value = "";
     this.renderCalendar();
     this.renderBookingList();
   }
@@ -585,6 +647,33 @@ class BookingApp {
     this.renderCalendar();
     this.renderBookingList();
     this.setStatus("success", "All bookings cleared.");
+  }
+
+  encodeFormData(formData) {
+    const params = new URLSearchParams();
+    for (const [key, value] of formData.entries()) params.append(key, value);
+    return params.toString();
+  }
+
+  async submitToNetlify() {
+    if (!this.form) return;
+
+    // Set timestamp right before submission (booking page uses booking.js, not main.js)
+    if (this.timestampInput)
+      this.timestampInput.value = new Date().toISOString();
+
+    const formData = new FormData(this.form);
+    if (!formData.has("form-name")) formData.append("form-name", "booking");
+
+    const body = this.encodeFormData(formData);
+
+    const res = await fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body,
+    });
+
+    if (!res.ok) throw new Error("Netlify submission failed");
   }
 }
 

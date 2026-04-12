@@ -19,9 +19,10 @@
     <script src="booking.js" defer></script>
   </head>
 
-  <body class="has-sidebar">
-    <a class="skip-link" href="#main">Skip to main content</a>
-
+  <body
+    class="has-sidebar"
+    data-business-email="forethoughtcareandsupport@gmail.com"
+  >
     <header class="site-header">
       <div class="site-header__inner">
         <div class="container header-inner">
@@ -71,14 +72,34 @@
       <section class="contact booking">
         <div class="container contact-grid booking-grid">
           <!-- Booking Form -->
-          <form id="bookingForm" novalidate>
-            <div
-              id="bookingStatus"
-              class="form-status"
-              aria-live="polite"
-              style="display: none"
-            ></div>
+          <form
+            id="bookingForm"
+            class="form"
+            name="booking"
+            method="POST"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+            action="success.html"
+            novalidate
+          >
+            <!-- Required for Netlify -->
+            <input type="hidden" name="form-name" value="booking" />
 
+            <!-- Submission timestamp -->
+            <input
+              type="hidden"
+              name="submission_timestamp"
+              value=""
+              data-submission-timestamp
+            />
+
+            <!-- Honeypot (spam protection) -->
+            <p class="visually-hidden">
+              <label>
+                Don’t fill this out if you’re human:
+                <input name="bot-field" />
+              </label>
+            </p>
             <!-- Provider -->
             <label for="provider">Select a provider</label>
             <select id="provider" name="provider" required>
@@ -96,7 +117,7 @@
 
             <label>
               Service
-              <select id="bService" required>
+              <select id="bService" name="service" required>
                 <option value="">Select a service</option>
                 <option value="Individual Support &amp; Recovery Coaching">
                   Individual Support &amp; Recovery Coaching
@@ -120,6 +141,7 @@
               <input
                 type="text"
                 id="bDate"
+                name="date"
                 required
                 readonly
                 placeholder="YYYY-MM-DD"
@@ -167,7 +189,13 @@
             <!-- ✅ START TIME ONLY -->
             <label>
               Start time
-              <input type="time" id="bTime" required step="60" />
+              <input
+                type="time"
+                id="bTime"
+                name="start_time"
+                required
+                step="60"
+              />
               <span class="error" id="bTimeError"></span>
             </label>
 
@@ -175,25 +203,25 @@
 
             <label>
               Name
-              <input type="text" id="bName" required />
+              <input type="text" id="bName" name="name" required />
               <span class="error" id="bNameError"></span>
             </label>
 
             <label>
               Email
-              <input type="email" id="bEmail" required />
+              <input type="email" id="bEmail" name="email" required />
               <span class="error" id="bEmailError"></span>
             </label>
 
             <label>
               Phone (optional)
-              <input type="tel" id="bPhone" />
+              <input type="tel" id="bPhone" name="phone" />
               <span class="error" id="bPhoneError"></span>
             </label>
 
             <label>
               Notes (optional)
-              <textarea id="bNotes" rows="3"></textarea>
+              <textarea id="bNotes" name="notes" rows="3"></textarea>
             </label>
 
             <button class="btn" type="submit">Confirm Booking</button>

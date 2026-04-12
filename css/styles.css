@@ -1223,3 +1223,105 @@ textarea {
 .site-header {
   border-bottom-width: 0.5px;
 }
+/* ===============================
+   Testimonials – Review Form + Rating
+================================ */
+
+.review-form__row {
+  margin-top: 1rem;
+}
+.review-form__label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.35rem;
+}
+.review-form__input,
+.review-form__textarea {
+  width: 100%;
+  max-width: 720px;
+  padding: 0.75rem;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  font: inherit;
+}
+
+.review-form__actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+/* Accessible visually-hidden helper (if you don't already have one) */
+.visually-hidden {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+}
+
+/* Rating widget */
+.review-form .rating {
+  --inactive: #d1d5db;
+  --active: #f59e0b;
+  --hover: #fbbf24;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
+  direction: rtl; /* keeps fill logic correct */
+}
+
+.review-form .rating__input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.review-form .rating__star {
+  cursor: pointer;
+  color: var(--inactive);
+}
+.review-form .rating__svg {
+  width: 32px;
+  height: 32px;
+  fill: currentColor;
+  display: block;
+}
+
+/* Half clipping: .5 left half, .0 right half */
+.review-form .rating__star[data-value$=".5"] .rating__svg {
+  clip-path: inset(0 50% 0 0);
+}
+.review-form .rating__star[data-value$=".0"] .rating__svg {
+  clip-path: inset(0 0 0 50%);
+}
+
+.review-form .rating__input:checked ~ .rating__star {
+  color: var(--active);
+}
+.review-form .rating__star:hover,
+.review-form .rating__star:hover ~ .rating__star {
+  color: var(--hover);
+}
+
+.review-form .rating__input:focus-visible + .rating__star {
+  outline: 3px solid rgba(59, 130, 246, 0.6);
+  outline-offset: 4px;
+  border-radius: 10px;
+}
+
+.review-form .rating__value {
+  margin-left: 0.5rem;
+  min-width: 2.5ch;
+  font-weight: 700;
+}
+/* Full-star override: ensure SVG is never clipped */
+.review-form .rating__svg {
+  clip-path: none !important;
+}
