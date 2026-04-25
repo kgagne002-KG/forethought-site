@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Book an Appointment | Forethought Care &amp; Support</title>
+    <meta
+      name="description"
+      content="Book an appointment using our simple online booking system."
+    />
+
+    <!-- ✅ Stylesheets (from /css folder) -->
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/booking.css" />
+
+    <!-- ✅ Scripts (from root) -->
+    <script src="script.js" defer></script>
+    <script src="booking.js" defer></script>
+  </head>
+
+  <body
+    class="has-sidebar"
+    data-business-email="forethoughtcareandsupport@gmail.com"
+  >
+    <header class="site-header">
+      <div class="site-header__inner">
+        <div class="container header-inner">
+          <a class="brand" href="index.html">
+            <img
+              class="brand-mark"
+              src="assets/prometheus-mark.png"
+              alt="Forethought Care & Support logo"
+            />
+          </a>
+
+          <button
+            class="menu-toggle"
+            type="button"
+            aria-expanded="false"
+            data-menu-toggle
+          >
+            Menu
+          </button>
+        </div>
+
+        <div class="container nav-row">
+          <nav class="site-nav" aria-label="Primary navigation" data-site-nav>
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="team.html">Team</a>
+            <a href="pages/about.html">About</a>
+            <a href="pages/testimonials.html">Testimonials</a>
+            <a href="pages/blog.html">Blog</a>
+            <a href="pages/contact.html">Contact</a>
+            <a href="pages/eLearning.html">eLearning</a>
+            <a href="pages/crm-portal.html">CRM Portal</a>
+            <a href="/admin.html" style="display: none">Admin</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero">
+        <div class="container">
+          <h2>Book an Appointment</h2>
+          <p>Select a service, pick a date, then choose a start time.</p>
+        </div>
+      </section>
+
+      <section class="contact booking">
+        <div class="container contact-grid booking-grid">
+          <!-- Booking Form -->
+          <form
+            id="bookingForm"
+            class="form"
+            name="booking"
+            method="POST"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+            action="success.html"
+            novalidate
+          >
+            <!-- Required for Netlify -->
+            <input type="hidden" name="form-name" value="booking" />
+
+            <!-- Submission timestamp -->
+            <input
+              type="hidden"
+              name="submission_timestamp"
+              value=""
+              data-submission-timestamp
+            />
+
+            <!-- Honeypot (spam protection) -->
+            <p class="visually-hidden">
+              <label>
+                Don’t fill this out if you’re human:
+                <input name="bot-field" />
+              </label>
+            </p>
+            <!-- Provider -->
+            <label for="provider">Select a provider</label>
+            <select id="provider" name="provider" required>
+              <option value="" selected disabled>
+                -- Choose a provider --
+              </option>
+              <option value="any">Any available</option>
+              <option value="jaqueline">Jaqueline</option>
+              <option value="patrick">Patrick</option>
+              <option value="nikki">Nikki</option>
+              <option value="nadia">Nadia</option>
+              <option value="leah">Leah</option>
+              <option value="kayla">Kayla</option>
+            </select>
+
+            <label>
+              Service
+              <select id="bService" name="service" required>
+                <option value="">Select a service</option>
+                <option value="Individual Support &amp; Recovery Coaching">
+                  Individual Support &amp; Recovery Coaching
+                </option>
+                <option value="Business Support &amp; Administration">
+                  Business Support &amp; Administration
+                </option>
+                <option value="Workplace Training &amp; Assessment">
+                  Workplace Training &amp; Assessment
+                </option>
+                <option value="Research Ethics &amp; Governance Support">
+                  Research Ethics &amp; Governance Support
+                </option>
+                <option value="Other">Other</option>
+              </select>
+              <span class="error" id="bServiceError"></span>
+            </label>
+
+            <label>
+              Date
+              <input
+                type="text"
+                id="bDate"
+                name="date"
+                required
+                readonly
+                placeholder="YYYY-MM-DD"
+              />
+              <span class="error" id="bDateError"></span>
+            </label>
+
+            <!-- Calendar UI -->
+            <div class="calendar" aria-label="Calendar">
+              <div class="calendar-header">
+                <button
+                  type="button"
+                  class="btn btn-secondary calendar-nav"
+                  id="calPrev"
+                  aria-label="Previous month"
+                ></button>
+                <div class="calendar-title" id="calTitle">Month YYYY</div>
+                <button
+                  type="button"
+                  class="btn btn-secondary calendar-nav"
+                  id="calNext"
+                  aria-label="Next month"
+                ></button>
+              </div>
+
+              <div class="calendar-weekdays" aria-hidden="true">
+                <div>Sun</div>
+                <div>Mon</div>
+                <div>Tue</div>
+                <div>Wed</div>
+                <div>Thu</div>
+                <div>Fri</div>
+                <div>Sat</div>
+              </div>
+
+              <div class="calendar-grid" id="calGrid"></div>
+
+              <div class="calendar-legend">
+                <span class="dot booked"></span> Booked day
+                <span class="dot full"></span> Fully booked
+                <span class="dot selected"></span> Selected
+              </div>
+            </div>
+
+            <!-- ✅ START TIME ONLY -->
+            <label>
+              Start time
+              <input
+                type="time"
+                id="bTime"
+                name="start_time"
+                required
+                step="60"
+              />
+              <span class="error" id="bTimeError"></span>
+            </label>
+
+            <p class="subtext">Appointments are open‑ended.</p>
+
+            <label>
+              Name
+              <input type="text" id="bName" name="name" required />
+              <span class="error" id="bNameError"></span>
+            </label>
+
+            <label>
+              Email
+              <input type="email" id="bEmail" name="email" required />
+              <span class="error" id="bEmailError"></span>
+            </label>
+
+            <label>
+              Phone (optional)
+              <input type="tel" id="bPhone" name="phone" />
+              <span class="error" id="bPhoneError"></span>
+            </label>
+
+            <label>
+              Notes (optional)
+              <textarea id="bNotes" name="notes" rows="3"></textarea>
+            </label>
+
+            <button class="btn" type="submit">Confirm Booking</button>
+            <button class="btn btn-secondary" type="button" id="clearAll">
+              Clear All
+            </button>
+          </form>
+
+          <!-- Right column -->
+          <div class="contact-info card">
+            <h3>Bookings</h3>
+            <div id="bookingList" class="booking-list"></div>
+            <p class="subtext"></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Confirmation Modal -->
+    <div class="modal-overlay" id="confirmOverlay" hidden></div>
+
+    <div
+      class="modal"
+      id="confirmModal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="confirmTitle"
+      hidden
+    >
+      <h3 id="confirmTitle">Confirm your booking</h3>
+      <div class="modal-summary" id="confirmSummary"></div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn btn-secondary" id="confirmCancel">
+          Cancel
+        </button>
+        <button type="button" class="btn" id="confirmSubmit">Confirm</button>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container footer-bottom">
+        <p>© <span id="year"></span> Forethought. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>

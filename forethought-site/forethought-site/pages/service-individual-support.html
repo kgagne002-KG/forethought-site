@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Individual Support &amp; Recovery Coaching | Forethought</title>
+
+  <!-- /pages paths -->
+  <link rel="stylesheet" href="../css/styles.css" />
+  <script src="../js/main.js" defer></script>
+</head>
+
+<body data-service-default="Individual Support & Recovery Coaching">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+  <div class="site-header__inner">
+
+    <!-- BRAND ROW -->
+    <div class="container header-inner">
+      <a class="brand" href="../index.html">
+        <img class="brand-mark" src="../assets/prometheus-mark.png" alt="...">
+      </a>
+
+      <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="primary-nav">
+        Menu
+      </button>
+</div>
+
+      <!-- NAV ROW -->
+<div class="container nav-row">
+  <nav id="primary-nav" class="site-nav" aria-label="Primary navigation" data-site-nav>
+    <a href="../index.html">Home</a>
+    <a href="../services.html" aria-current="page">Services</a>
+    <a href="../team.html">Team</a>
+
+    <a href="about.html">About</a>
+    <a href="testimonials.html">Testimonials</a>
+    <a href="blog.html">Blog</a>
+    <a class="nav-cta" href="contact.html">Contact</a>
+
+    
+  </nav>
+</div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <h1>Individual Support &amp; Recovery Coaching</h1>
+        <p class="lead">Helping people move toward their life goals using the Carriage Ride Model.</p>
+        <blockquote class="anchor-quote">
+          “Life truly lived is a grand adventure.” <span>— Helen Keller</span>
+        </blockquote>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container content-stack">
+        <h2>What we do</h2>
+        <p>
+          Warm, practical, person-centred support for people navigating recovery, disability, and life transitions — focused on strengths, choice, and confidence.
+        </p>
+
+        <h2>This includes</h2>
+        <ul class="feature-list">
+          <li>Recovery coaching</li>
+          <li>Life-goal planning and support</li>
+          <li>Disability support (NDIS-style)</li>
+          <li>Emotional regulation and confidence-building</li>
+          <li>Practical support for routines, daily living, and transitions</li>
+        </ul>
+
+        <h2>Who it’s for</h2>
+        <p>Individuals seeking structured, compassionate support to build capability and progress toward meaningful goals.</p>
+
+        <h2>How we work</h2>
+        <p>Support is collaborative, paced to your needs, and grounded in consent-led practice.</p>
+      </div>
+    </section>
+
+    <!-- Embedded contact form -->
+    <section class="section section-alt" aria-label="Enquiry form">
+      <div class="container">
+        <h2>Enquire about this service</h2>
+        <p class="muted">Send a brief enquiry and we’ll respond with next steps.</p>
+
+        <form class="service-form"
+              name="service-enquiry"
+              method="POST"
+              data-netlify="true"
+              netlify-honeypot="bot-field"
+              data-service-form
+              data-service="Individual Support & Recovery Coaching">
+
+          <input type="hidden" name="form-name" value="service-enquiry" />
+          <p class="sr-only">
+            <label>Don’t fill this out: <input name="bot-field" /></label>
+          </p>
+
+          <label>
+            Full name
+            <input type="text" name="full_name" autocomplete="name" required />
+          </label>
+
+          <label>
+            Email
+            <input type="email" name="email" autocomplete="email" required />
+          </label>
+
+          <label>
+            Phone (optional)
+            <input type="tel" name="phone" autocomplete="tel" />
+          </label>
+
+          <label>
+            Service interest
+            <select name="service_interest" required>
+              <option value="">Select one…</option>
+              <option>Individual Support & Recovery Coaching</option>
+              <option>Business Support & Administration</option>
+              <option>Workplace Training & Assessment</option>
+              <option>Research Ethics & Governance Support</option>
+            </select>
+          </label>
+
+          <label>
+            Primary goal / reason for contact
+            <textarea name="primary_goal" rows="5" required></textarea>
+          </label>
+
+          <label class="checkbox">
+            <input type="checkbox" name="consent" value="yes" required />
+            I consent to being contacted and to the information provided being stored for enquiry and service planning.
+          </label>
+
+          <input type="hidden" name="source_page" value="" data-source-page />
+
+          <button class="btn btn-primary" type="submit">Send enquiry</button>
+          <p class="form-help">
+            Prefer the full referrals page? <a href="contact.html">Go to Contact &amp; Referrals</a>.
+          </p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-bottom">
+      <p>&copy; <span id="year"></span> Forethought. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
